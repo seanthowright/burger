@@ -21,7 +21,7 @@ router.post("/burgers/insertOne", function(req, res) {
         req.body.name, false
     ], function(result) {
 
-        res.render({ id: result.insertId });
+        res.json({ id: result.insertId });
     });
 });
 
