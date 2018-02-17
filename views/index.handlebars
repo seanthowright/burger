@@ -7,9 +7,9 @@
       <img src="/assets/img/hamburgerbg.jpg" alt="hamburgerpic" class="rounded mx-auto d-block img-fluid">
     </div>
   </div>
-
+  <br>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
       <h2>Add a Burger</h2>
         <form action="burger/create" method="POST" class="create-form">
 
@@ -19,16 +19,42 @@
          </div>
 
         <button id="addburger">Add Burger</button>
-
+    </div>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Devour a Burger!</h2>
+      <div id="uneatenburger">
+        
+        {{#each burgers}}
+          {{#unless devoured}}
+          <form action="burger/updateOne/{{id}}" method="PUT">
+            <div class="input-group">
+              <li class="form-control">{{id}}. {{burger_name}}</li>
+                <span class="input-group-btn">
+                  <button id="devourburger">Devour It!</button>
+                </span>
+            </div>
+          </form>
+          {{/unless}}
+        {{/each}}
 
-<!-- Pseudocode for the next part because I can't figure it out
+      </div>
+    </div>
+    <br>
+  <div class="col-lg-6">
+    <h2>Already eaten!</h2>
+      <div id="eatenburger">
 
-I would like to have 2 divs each with a card,
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class="input-group">
+              <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+            </div>
+          {{/if}}
+        {{/each}}
 
-One on the left would show all of the burgers yet to be eaten, as well as newly submitted burgers.
-  -should be linked with the insertOne function from the burgers_controller.js
-
-One on the right would show all of the devoured burgers
-  -should be linked with the updateOne function
-
+      </div>
+  </div>
+</div>
